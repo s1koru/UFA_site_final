@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описание достопримечательности</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Основные стили */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            max-width: 1200px;
+        }
+        .section {
+            padding: 20px 0;
+        }
+        .header, .address, .rating {
+            text-align: center;
+        }
+
+        /* Стили для слайдера */
+        .slider {
+            position: relative;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+        }
+        .slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: none;
+        }
+        .prev { left: 0; }
+        .next { right: 0; }
+
+        /* Текстовое описание */
+        .description {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Секция с картой и рейтингом */
+        .rating iframe {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="section header">
+            <h1>Художественный музей имени М. В. Нестерова</h1>
+        </header>
+
+        <!-- Слайдер изображений -->
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="images/nesterov_1.jpg" alt="Изображение 1"></div>
+                <div class="slide"><img src="images/nesterov_2.jpg" alt="Изображение 2"></div>
+                <div class="slide"><img src="images/nesterov_3.jpg" alt="Изображение 3"></div>
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <!-- Описание достопримечательности -->
+        <section class="section description">
+            <h2>Описание</h2>
+            <p>Художественный музей имени М. В. Нестерова — один из крупнейших музеев искусства в Башкортостане. Здесь представлена обширная коллекция произведений искусства, в том числе работы русских и башкирских мастеров. Это место, где можно прикоснуться к культурному наследию региона и насладиться шедеврами живописи и скульптуры.</p>
+        </section>
+
+        <!-- Адрес достопримечательности -->
+        <section class="section address">
+            <h2>Адрес</h2>
+            <p>ул. Гоголя, 27, Уфа, Башкортостан</p>
+        </section>
+
+        <!-- Оценка и карта -->
+        <section class="section rating">
+            <h2>Оценка на Яндекс.Картах</h2>
+            <!-- Вставка Яндекс.Карт -->
+            <iframe src="https://yandex.ru/maps/?um=constructor%3Ayour_map_id&source=constructorLink"></iframe>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript для слайдера
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+
+        function showSlide(slideIndex) {
+            const slidesCount = slides.children.length;
+            if (slideIndex >= slidesCount) currentSlide = 0;
+            else if (slideIndex < 0) currentSlide = slidesCount - 1;
+            else currentSlide = slideIndex;
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() { showSlide(currentSlide + 1); }
+        function prevSlide() { showSlide(currentSlide - 1); }
+
+        // Автоматическое пролистывание
+        setInterval(nextSlide, 3000);
+    </script>
+</body>
+</html>

@@ -86,11 +86,13 @@ h2::after {
 }
 
 .grid {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Устанавливаем 5 равных колонок */
+    gap: 1.5rem; /* Расстояние между карточками */
+    justify-items: center; /* Центрируем карточки в ячейках */
 }
+
+
 
 .card {
     background: #fff;
@@ -147,7 +149,6 @@ footer {
     margin-top: 3rem;
     font-size: 0.9rem;
 }
-
 .card img {
     width: 100%;
     height: auto;
@@ -159,6 +160,27 @@ footer {
 
 .card:hover img {
     transform: scale(1.05); /* Увеличение изображения при наведении */
+}
+
+
+/* Основной заголовок секции */
+#info h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Подзаголовок секции */
+#info h3 {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.6;
+    font-weight: 400;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 
@@ -191,16 +213,27 @@ footer {
 }
 
 /* Адаптивность */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-    
-    nav a {
-        margin: 0 0.5rem;
-    }
-    
-    .card {
-        width: 100%;
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 карточки в строке для экранов меньше 1200px */
     }
 }
+
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 карточки в строке для экранов меньше 992px */
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 карточки в строке для экранов меньше 768px */
+    }
+}
+
+@media (max-width: 576px) {
+    .grid {
+        grid-template-columns: 1fr; /* 1 карточка в строке для экранов меньше 576px */
+    }
+}
+
