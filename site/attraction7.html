@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описание достопримечательности</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .container {
+            display: flex; /* Flexbox для расположения слайдера и описания */
+            margin: 20px;
+        }
+
+        .slider {
+            flex: 1; /* Слайдер занимает оставшееся пространство */
+            position: relative;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%; /* Занять всю высоту слайдера */
+            object-fit: cover; /* Обеспечить заполнение, сохраняя пропорции */
+            border-radius: 10px;
+            transition: filter 0.3s; /* Плавный переход для эффекта наведения */
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .description {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            margin-left: 20px; /* Отступ от слайдера */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1; /* Описание занимает оставшееся пространство */
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #1f639b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #3498db;
+            color: #fff;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Переключаем на вертикальное расположение на маленьких экранах */
+            }
+
+            .slider, .description {
+                margin: 0; /* Убираем отступы на мобильных */
+                width: 100%; /* Ширина 100% для мобильных */
+            }
+        }
+
+        /* Новые стили для ячеек с дополнительной информацией */
+        .additional-info-container {
+            display: flex; /* Flexbox для размещения ячеек в одну линию */
+            justify-content: center; /* Центрируем ячейки */
+            margin: 20px 0; /* Отступ сверху и снизу */
+        }
+
+        .additional-info {
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px; /* Уменьшаем отступы */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 250px; /* Уменьшаем ширину ячеек */
+            margin: 0 10px; /* Отступ между ячейками */
+            text-align: center; /* Центрируем текст внутри ячеек */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Национальный музей Республики Башкортостан</h1>
+    </header>
+
+    <button class="back-button" onclick="window.history.back()">Назад</button>
+
+    <div class="container">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="attraction7_img/NazMuz.jpg" alt="Изображение 1"></div>
+                <div class="slide"><img src="attraction7_img/NazMuz2.jpg" alt="Изображение 2"></div>
+                <div class="slide"><img src="attraction7_img/NazMuz3.jpg" alt="Изображение 3"></div>
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <section class="description">
+            <h2>Описание</h2>
+            <p>Национальный музей Республики Башкортостан – это не только судьбы и жизненные пути людей, создавших его, но и история его фондов, коллекций и предметов, хранящихся или выставленных в экспозиционных залах. Чем разностороннее и богаче фонды музея, тем богаче и ярче его история.</p>
+
+            <h2>Экспозиции</h2>
+            <p>В музее представлено <strong>34 экспозиционных и выставочных зала</strong>, в которых размещены экспонаты различной тематики:</p>
+            <ul>
+                <li>Природа родного края</li>
+                <li>История</li>
+                <li>Археология</li>
+                <li>Этнография</li>
+            </ul>
+            <p>Здесь широко представлено богатое прошлое и настоящее Республики Башкортостан.</p>
+
+            <h2>Экскурсии и мероприятия</h2>
+            <p>На экскурсиях посетители смогут углубить свои знания по декоративно-прикладному искусству народов Башкортостана, узнать о людях, создававших историю, а также об истории Республики Башкортостан.</p>
+        </section>
+    </div>
+
+    <div class="additional-info-container">
+        <div class="additional-info">
+            <h2>Часы работы</h2>
+            <p>ВТ,СР,ЧТ,ПТ,ВСК: <strong>11:00 - 18:00</strong></p>
+            <p>СБ: <strong>11:00 - 20:00</strong></p>
+            <p>Выходной: <strong>Понедельник</strong></p>
+        </div>
+        <div class="additional-info">
+            <h2>Стоимость входного билета</h2>
+            <p>Взрослый билет: <strong>300 рублей</strong></p>
+            <p>Детский билет: <strong>100 рублей</strong></p>
+        </div>
+
+        <div class="additional-info">
+            <h2>Сайт музея</h2>
+            <p><a href="https://museumrb.ru/" target="_blank">Официальный сайт Национального музея Республики Башкортостан</a></p>
+        </div>
+    </div>
+
+    <section class="section address">
+        <h2><center>Адрес</center></h2>
+        <p><center>Республика Башкортостан, городской округ Уфа, Кировский район, Советская ул., 14</center></p>
+    </section>
+
+    <script>
+        // JavaScript для слайдера
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+
+        function showSlide(slideIndex) {
+            const slidesCount = slides.children.length;
+            if (slideIndex >= slidesCount) currentSlide = 0;
+            else if (slideIndex < 0) currentSlide = slidesCount - 1;
+            else currentSlide = slideIndex;
+
+            slides.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

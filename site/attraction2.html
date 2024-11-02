@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описание достопримечательности</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .container {
+            display: flex; /* Flexbox для расположения слайдера и описания */
+            margin: 20px;
+        }
+
+        .slider {
+            flex: 1; /* Слайдер занимает оставшееся пространство */
+            position: relative;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%; /* Занять всю высоту слайдера */
+            object-fit: cover; /* Обеспечить заполнение, сохраняя пропорции */
+            border-radius: 10px;
+            transition: filter 0.3s; /* Плавный переход для эффекта наведения */
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .description {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            margin-left: 20px; /* Отступ от слайдера */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1; /* Описание занимает оставшееся пространство */
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #1f639b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #3498db;
+            color: #fff;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Переключаем на вертикальное расположение на маленьких экранах */
+            }
+
+            .slider, .description {
+                margin: 0; /* Убираем отступы на мобильных */
+                width: 100%; /* Ширина 100% для мобильных */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Соборная мечеть Ляля-Тюльпан</h1>
+    </header>
+
+    <button class="back-button" onclick="window.history.back()">Назад</button>
+
+    <div class="container">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="attraction2_img/LYA LYA.jpg" alt="Изображение 1"></div>
+                <div class="slide"><img src="attraction2_img/LYA LYA 2.jpg" alt="Изображение 2"></div>
+                <div class="slide"><img src="attraction2_img/LYA LYA 3.jpg" alt="Изображение 3"></div>
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <section class="description">
+            <h2>Описание</h2>
+            
+        
+            <div class="highlight">
+                <strong>История:</strong> Строительство центра «Ляля-Тюльпан» началось в 1989 году и завершилось в 1998 году. Архитектором этого уникального сооружения является Вакиль Вагизович Давлятшин.
+            </div>
+        
+            <h2>Архитектура</h2>
+            <p>Здание представляет собой трехэтажное каменное строение с размерами 50×50×21 метров. Архитектурная композиция выполнена в форме цветущего тюльпана, что символизирует красоту и гармонию. По обе стороны от главного входа расположены два восьмигранных минарета, напоминающих бутоны тюльпанов, высота которых составляет 53 метра.</p>
+        
+            <h2>Внутреннее устройство мечети</h2>
+            <p>Вход в мечеть находится на уровне третьего этажа, где располагаются вестибюль и молитвенный зал, вмещающий 300 человек, а также балкон для женщин на 200 мест. Молитвенный зал оформлен в восточном стиле, а его стены облицованы мрамором и змеевиком, создавая атмосферу уюта и спокойствия. Пол выложен керамической плиткой и застелен коврами, а цветные витражи в окнах добавляют ярких красок и света в интерьере. Завораживающие хрустальные люстры освещают зал, придавая ему особую торжественность.</p>
+        
+            <h2>Образовательные возможности</h2>
+            <p>При мечети функционируют медресе и воскресные школы для взрослых и детей, предлагая обучение в уютных учебных кабинетах. Также имеется общежитие, столовая и конференц-зал. В общей сложности мечеть может вместить более 1000 верующих, что делает её важным центром для мусульманской общины Уфы.</p>
+        
+        </section>
+    </div>
+
+    <section class="section address">
+        
+        <h2><center>Адрес</center></h2>
+        <p><center>Республика Башкортостан, городской округ Уфа, Орджоникизевский район, ул. Комарова, 5</center></p>
+    </section>
+
+    <script>
+        // JavaScript для слайдера
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+
+        function showSlide(slideIndex) {
+            const slidesCount = slides.children.length;
+            if (slideIndex >= slidesCount) currentSlide = 0;
+            else if (slideIndex < 0) currentSlide = slidesCount - 1;
+            else currentSlide = slideIndex;
+
+            slides.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
