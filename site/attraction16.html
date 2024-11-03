@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описание достопримечательности</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .container {
+            display: flex; /* Flexbox для расположения слайдера и описания */
+            margin: 20px;
+        }
+
+        .slider {
+            flex: 1; /* Слайдер занимает оставшееся пространство */
+            position: relative;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%; /* Занять всю высоту слайдера */
+            object-fit: cover; /* Обеспечить заполнение, сохраняя пропорции */
+            border-radius: 10px;
+            transition: filter 0.3s; /* Плавный переход для эффекта наведения */
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .description {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            margin-left: 20px; /* Отступ от слайдера */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1; /* Описание занимает оставшееся пространство */
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #1f639b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #3498db;
+            color: #fff;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Переключаем на вертикальное расположение на маленьких экранах */
+            }
+
+            .slider, .description {
+                margin: 0; /* Убираем отступы на мобильных */
+                width: 100%; /* Ширина 100% для мобильных */
+            }
+        }
+
+        /* Новые стили для ячеек с дополнительной информацией */
+        .additional-info-container {
+            display: flex; /* Flexbox для размещения ячеек в одну линию */
+            justify-content: center; /* Центрируем ячейки */
+            margin: 20px 0; /* Отступ сверху и снизу */
+        }
+
+        .additional-info {
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px; /* Уменьшаем отступы */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 250px; /* Уменьшаем ширину ячеек */
+            margin: 0 10px; /* Отступ между ячейками */
+            text-align: center; /* Центрируем текст внутри ячеек */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Уфимский городской планетарий</h1>
+    </header>
+
+    <button class="back-button" onclick="window.history.back()">Назад</button>
+
+    <div class="container">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="attraction16_img/planetarium.jpg" alt="Изображение 1"></div>
+                <div class="slide"><img src="attraction16_img/planetarium1.jpg" alt="Изображение 2"></div>
+                <div class="slide"><img src="attraction16_img/planetarium2.jpg" alt="Изображение 3"></div>
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <section class="description">
+            <h2>Описание</h2>
+           <p>Уфимский планетарий — единственный планетарий в Уфе и в Башкортостане.</p>
+           <h2>История:</h2>
+           <p> был открыт 22 июля 1964 года. Первоначально принадлежал парку Гафури, но в 1976 году стал самостоятельным учреждением. К нему была присоединена детско-юношеская обсерватория «Юность», которая была снесена в 1988 году.</p>
+           <h2>Техническая оснащённость:</h2>
+           <p>в планетарии установлен планетарный проектор звёздного неба «Skymaster» (ZKP-3) производства немецкой фирмы «Carl Zeiss Jena». Он позволяет демонстрировать изображения планет, картин звёздного неба, солнечных и лунных затмений, северного сияния и др..</p>
+           <h2>Программы:</h2>
+           <p>рассчитаны как на детей, так и на взрослых. Ежегодно планетарий посещает 50 тысяч человек. Зал вмещает 85 человек.</p>
+           <h2>Мероприятия:</h2>
+           <p>читают лекции, проводят тематические вечера по астрономии и астрофизике, художественные, литературные и музыкальные конкурсы на тему космоса.</p>
+    </div>
+    
+    <div class="additional-info-container">
+        <div class="additional-info">
+            <h2>Часы работы</h2>
+            <p>СР,ЧТ,ПТ,СБ,ВСК: <strong>12:00 - 19:30</strong></p>
+            <p>Выходной: <strong>Понедельник, Вторник </strong></p>
+        </div>
+        <div class="additional-info">
+            <h2>Стоимость входного билета</h2>
+            <p>Средняя стоимость: <strong>325 рублей</strong></p>
+        </div>
+
+        <div class="additional-info">
+            <h2>Сайт музея</h2>
+            <p><a href="https://ufaplanetarium.ru/ target="_blank">Официальный сайт Уфимского городского планетария </a></p>
+        </div>
+    </div>
+    
+    <section class="section address">
+        <h2><center>Адрес</center></h2>
+        <p><center>Республика Башкортостан, городской округ Уфа, Октябрьский район, площадь Ленина, проспект Октября 79/2.</center></p>
+    </section>
+
+    <script>
+        // JavaScript для слайдера
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+
+        function showSlide(slideIndex) {
+            const slidesCount = slides.children.length;
+            if (slideIndex >= slidesCount) currentSlide = 0;
+            else if (slideIndex < 0) currentSlide = slidesCount - 1;
+            else currentSlide = slideIndex;
+
+            slides.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описание достопримечательности</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: #fff;
+            padding: 1.5rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .container {
+            display: flex; /* Flexbox для расположения слайдера и описания */
+            margin: 20px;
+        }
+
+        .slider {
+            flex: 1; /* Слайдер занимает оставшееся пространство */
+            position: relative;
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%; /* Занять всю высоту слайдера */
+            object-fit: cover; /* Обеспечить заполнение, сохраняя пропорции */
+            border-radius: 10px;
+            transition: filter 0.3s; /* Плавный переход для эффекта наведения */
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 16px;
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        .description {
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            margin-left: 20px; /* Отступ от слайдера */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1; /* Описание занимает оставшееся пространство */
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #1f639b;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #3498db;
+            color: #fff;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        .team {
+            margin: 20px;
+            background-image: url("attraction19_img/fc_ufa.jpg"); 
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .team h2 {
+            text-align: center;
+            color: #fff;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
+        }
+
+        .team-table th, .team-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .team-table th {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .team-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Переключаем на вертикальное расположение на маленьких экранах */
+            }
+
+            .slider, .description {
+                margin: 0; /* Убираем отступы на мобильных */
+                width: 100%; /* Ширина 100% для мобильных */
+            }
+        }
+
+        /* Новые стили для ячеек с дополнительной информацией */
+        .additional-info-container {
+            display: flex; /* Flexbox для размещения ячеек в одну линию */
+            justify-content: center; /* Центрируем ячейки */
+            margin: 20px 0; /* Отступ сверху и снизу */
+        }
+
+        .additional-info {
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px; /* Уменьшаем отступы */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 250px; /* Уменьшаем ширину ячеек */
+            margin: 0 10px; /* Отступ между ячейками */
+            text-align: center; /* Центрируем текст внутри ячеек */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Стадион "Нефтяник"</h1>
+    </header>
+
+    <button class="back-button" onclick="window.history.back()">Назад</button>
+
+    <div class="container">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="attraction19_img/neftyanik_stadium.jpg" alt="Изображение 1"></div>
+                <div class="slide"><img src="attraction19_img/neftyanik_stadium1.jpg" alt="Изображение 2"></div>
+                <div class="slide"><img src="attraction19_img/neftyanik_stadium2.jpg" alt="Изображение 3"></div>
+            </div>
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <section class="description">
+            <h2>Описание</h2>
+            <p>«Нефтяник» — футбольный стадион в Уфе, домашний стадион футбольного клуба «Уфа». Является самым большим спортивным объектом в Республике Башкортостан.</p>
+            
+            <h2>История</h2>
+            <ul>
+                <li>Открыт в 1967 году.</li>
+                <li>Реконструирован в 2012–2015 годах.</li>
+                <li>Первый матч после реконструкции состоялся 9 августа 2015 года в рамках чемпионата России по футболу.</li>
+            </ul>
+
+            <h2>Характеристика</h2>
+            <ul>
+                <li>Полная паспортная вместимость — 15 132 зрительских места.</li>
+                <li>Реальная вместимость — 13 573 места, из которых 1 832 места в фанатских секторах.</li>
+            </ul>
+
+            <h2>Инфраструктура стадиона</h2>
+            <ul>
+                <li>Футбольное поле (105 x 68 м) с искусственным покрытием, автоматизированной системой подогрева и полива.</li>
+                <li>Легкоатлетическая беговая дорожка (400 м).</li>
+                <li>Цифровое электронное табло.</li>
+                <li>Административно-бытовой и физкультурно-оздоровительный корпуса.</li>
+                <li>Фитнес-центр.</li>
+                <li>Блок футбольной школы.</li>
+                <li>6 тренировочных синтетических полей.</li>
+            </ul>
+        </div>
+        <section class="team">
+            <h2>Состав футбольного клуба "Уфа"</h2>
+            <table class="team-table">
+                <thead>
+                    <tr>
+                        <th>Игрок</th>
+                        <th>Позиция</th>
+                        <th>Номер</th>
+                        <th>Национальность</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Олег Баклов</td>
+                        <td>Вратарь</td>
+                        <td>1</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Алексей Чернов</td>
+                        <td>Вратарь</td>
+                        <td>40</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Даниил Корнюшин</td>
+                        <td>Защитник</td>
+                        <td>4</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Денис Кутин</td>
+                        <td>Защитник</td>
+                        <td>5</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Александр Перченок</td>
+                        <td>Защитник</td>
+                        <td>7</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Давид Озманов </td>
+                        <td>Защитник</td>
+                        <td>7</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Глеб Захаров</td>
+                        <td>Защитник</td>
+                        <td>38</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Артем Гуренко </td>
+                        <td>Защитник</td>
+                        <td>18</td>
+                        <td>Беларусь</td>
+                    </tr>
+                    <tr>
+                        <td>Александр Теняев</td>
+                        <td>Защитник</td>
+                        <td>45</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Вадим Карпов</td>
+                        <td>Защитник</td>
+                        <td>62</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Виктор Гараев </td>
+                        <td>Защитник</td>
+                        <td>93</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Шамиль Исаев</td>
+                        <td>Полузащитник</td>
+                        <td>8</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Владислав Адаев</td>
+                        <td>Полузащитник</td>
+                        <td>9</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Расул Гыстаров </td>
+                        <td>Полузащитник</td>
+                        <td>10</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Валерий Бочеров </td>
+                        <td>Полузащитник</td>
+                        <td>15</td>
+                        <td>Беларусь</td>
+                    </tr>
+                    <tr>
+                        <td>Никита Мацхарашвили</td>
+                        <td>Полузащитник</td>
+                        <td>21</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Алихан Шаваев</td>
+                        <td>Полузащитник</td>
+                        <td>22</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Андрей Анисимов</td>
+                        <td>Полузащитник</td>
+                        <td>27</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Александр Лукьянов</td>
+                        <td>Полузащитник</td>
+                        <td>48</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Константин Троянов</td>
+                        <td>Полузащитник</td>
+                        <td>79</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Дмитрий Стоцкий</td>
+                        <td>Полузащитник</td>
+                        <td>89</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Роман Пасевич</td>
+                        <td>Полузащитник</td>
+                        <td>97</td>
+                        <td>Беларусь</td>
+                    </tr>
+                    <tr>
+                        <td>Владислав Ложкин</td>
+                        <td>Нападающий</td>
+                        <td>11</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Камиль Муллин</td>
+                        <td>Нападающий</td>
+                        <td>72</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Мигран Агеян</td>
+                        <td>Нападающий</td>
+                        <td>88</td>
+                        <td>Россия</td>
+                    </tr>
+                    <tr>
+                        <td>Антон Банников</td>
+                        <td>Нападающий</td>
+                        <td>20</td>
+                        <td>Россия</td>
+                    </tr>
+                </tbody>
+                </table>
+            </section>
+    <section class="section address">
+        <h2><center>Адрес</center></h2>
+        <p><center>Республика Башкортостан, городской округ Уфа, Орджоникидзевский район, ул. Комарова 9/1.</center></p>
+    </section>
+
+    <script>
+        // JavaScript для слайдера
+        let currentSlide = 0;
+        const slides = document.querySelector('.slides');
+
+        function showSlide(slideIndex) {
+            const slidesCount = slides.children.length;
+            if (slideIndex >= slidesCount) currentSlide = 0;
+            else if (slideIndex < 0) currentSlide = slidesCount - 1;
+            else currentSlide = slideIndex;
+
+            slides.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
