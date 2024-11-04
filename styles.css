@@ -92,7 +92,11 @@ h2::after {
     justify-items: center; /* Центрируем карточки в ячейках */
 }
 
-
+#transport .grid {
+    display: flex;
+    justify-content: center;  /* Центрирует карточки по горизонтали */
+    gap: 1.5rem;  /* Задаёт расстояние между карточками */
+}
 
 .card {
     background: #fff;
