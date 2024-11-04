@@ -110,6 +110,8 @@ h2::after {
     transition: transform 0.4s ease, opacity 0.4s ease;
     animation: fadeInUp 0.6s forwards;
     animation-delay: 0.8s;
+    flex: 0 1 250px; /* Ограничивает ширину карточки до 250px и позволяет ей сжиматься */
+    max-width: 300px; /* Ограничивает максимальную ширину карточки */
 }
 
 .card:hover {
@@ -187,7 +189,22 @@ footer {
     padding: 0 1rem;
 }
 
+.thumbnail {
+    max-width: 100%; /* Убедитесь, что изображения не превышают ширину карточек */
+    height: auto;
+}
 
+.back-top {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+    margin: 20px 0;
+    transition: background 0.3s;
+}
 /* Анимации */
 @keyframes fadeIn {
     from { opacity: 0; }
