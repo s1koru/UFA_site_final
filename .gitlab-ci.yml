@@ -1,0 +1,12 @@
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r * .public  # Копируем все файлы из корня в папку .public
+    - cp -r site/* .public/  # Копируем все файлы из папки `site` в `.public`
+    - cp -r dop/* .public/  # Копируем все файлы из папки `dop` в `.public`
+  artifacts:
+    paths:
+      - .public
+  only:
+    - main
