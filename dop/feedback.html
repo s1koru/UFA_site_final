@@ -40,7 +40,6 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Стили для навигации */
         nav a {
             color: #fff;
             margin: 0 1rem;
@@ -101,7 +100,7 @@
             font-size: 1rem;
         }
 
-        input[type="submit"] {
+        .form-button {
             background: linear-gradient(135deg, #3498db, #8e44ad);
             color: white;
             padding: 10px 20px;
@@ -111,9 +110,10 @@
             font-size: 1.1rem;
             transition: background 0.3s;
             width: 100%;
+            margin-top: 1rem;
         }
 
-        input[type="submit"]:hover {
+        .form-button:hover {
             background: linear-gradient(135deg, #8e44ad, #3498db);
         }
 
@@ -180,18 +180,47 @@
                 <label for="tender">Предложения для добавления:</label>
                 <input type="text" id="tender" name="tender" required>
 
-                <input type="submit" value="Отправить сообщение">
+                <input type="submit" class="form-button" value="Отправить сообщение">
+                <button type="button" class="form-button" onclick="fillDefaultValues()">Заполнить значениями по умолчанию</button>
+                <button type="button" class="form-button" onclick="clearFormFields()">Очистить поля</button>
             </form>
         </section>
     </main>
 
     <script>
-        // Устанавливаем текущую дату в поле с id="date"
+        // Устанавливаем текущую дату в поле с id="date" при загрузке страницы
         document.addEventListener("DOMContentLoaded", function() {
             const dateInput = document.getElementById("date");
-            const today = new Date().toISOString().split('T')[0]; // Получаем текущую дату в формате YYYY-MM-DD
+            const today = new Date().toISOString().split('T')[0];
             dateInput.value = today;
         });
+    
+        // Function to fill form with default values
+        function fillDefaultValues() {
+            document.getElementById("surname").value = "Иванов";
+            document.getElementById("name").value = "Иван";
+            document.getElementById("group").value = "БПМ000";
+            document.getElementById("phone").value = "+79177777777";
+            document.getElementById("email").value = "example@example.com";
+            document.getElementById("tender").value = "-";
+            
+            // Устанавливаем сегодняшнюю дату в поле с id="date"
+            const dateInput = document.getElementById("date");
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
+        }
+    
+        // Function to clear all form fields except date
+        function clearFormFields() {
+            document.getElementById("surname").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("group").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("tender").value = "";
+            
+            // Оставляем текущую дату в поле "date" без изменений
+        }
     </script>
 </body>
 </html>
