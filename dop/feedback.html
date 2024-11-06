@@ -176,7 +176,7 @@
                 
                 <label for="date">Дата отправки сообщения:</label>
                 <input type="date" id="date" name="date" required>
-                
+
                 <label for="tender">Предложения для добавления:</label>
                 <input type="text" id="tender" name="tender" required>
 
@@ -184,5 +184,14 @@
             </form>
         </section>
     </main>
+
+    <script>
+        // Устанавливаем текущую дату в поле с id="date"
+        document.addEventListener("DOMContentLoaded", function() {
+            const dateInput = document.getElementById("date");
+            const today = new Date().toISOString().split('T')[0]; // Получаем текущую дату в формате YYYY-MM-DD
+            dateInput.value = today;
+        });
+    </script>
 </body>
 </html>
