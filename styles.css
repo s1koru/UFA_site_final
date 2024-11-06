@@ -93,9 +93,10 @@ h2::after {
 }
 
 #transport .grid {
-    display: flex;
-    justify-content: center;  /* Центрирует карточки по горизонтали */
-    gap: 1.5rem;  /* Задаёт расстояние между карточками */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
 }
 
 .card {
