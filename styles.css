@@ -58,6 +58,12 @@ nav a::after {
 nav a:hover::after {
     width: 100%;
 }
+ 
+nav a.active {
+    font-weight: bold;
+    color: #ffeaa7;
+}
+
 
 .section {
     padding: 2.5rem 1rem;
